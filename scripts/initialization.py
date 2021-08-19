@@ -50,7 +50,7 @@ def initialize():
     parser_database.add_argument('dir', type=argparse_check_dir, 
                         help='directory of the database')
     parser_database.add_argument('-n', type=int, 
-                        default=200, dest='min_length_seq', metavar='N',
+                        default=0, dest='min_length_seq', metavar='N',
                         help = 'delete sequences whose length is less than N '
                         '(default: %(default)s)')
 
