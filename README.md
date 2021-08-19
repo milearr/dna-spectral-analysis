@@ -59,7 +59,7 @@ As output, for each sequence in database, a file in .txt format is saved in the 
 ### Example 4: statistics-mode
 In this mode, the statistical analyses of the `database-mode` results are performed. The input is the same directory as `database-mode`. Use the one or mores options among `-v`, `-e`, `-k`, `-f`, `-s` and `-a` to set the methods to spectral analysis. Use `-M` to set the number of sequences drawn from database as M. Use `-t` to set the number of times `M` sequences are drawn. Use `-sd` to initialize the random number generator. For example, after perform the `database-mode`, you must run this script from a command prompt as
 
-`python3 main.py -a statistics-mode -p './database-cerevisiae/'`
+`python3 main.py -a statistics-mode './database-cerevisiae/'`
 
 The output is a file 'results.txt' saved in the directory './results-statistics/' created in the same folder as the input. In this file are recorded for all methods of spectral analysis: the boxplot information for True Positive and False Positive classification, the coordinates of the point on the ROC space, and the accuracy, sensitivity and specificity rate.
 
