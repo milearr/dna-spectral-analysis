@@ -33,8 +33,9 @@ where
 ## Example
 
 ### Case 1: file-mode
-The input is a file in .fasta format. The output result file is created and saved in a new directory  on the same folder as the input .,
+The input is a file in .fasta format. Use the one or mores options among `-v`, `-e`, `-k`, `-f`, `-s` and `-a` to set the methods to spectral analysis. If you want to see the energy spectrum graphs, enable the option `-p`.
 
-a new file is saved in the folder x created in the same folder as the input file
+The output is a file in .txt format saved in the directory './results/' created in the same folder as the input.
 
-If you want to see the energy spectrum graphs, enable the option `-p`
+`main.py -a file-mode -p './database-seq/F56F11_4a_coding.fasta'`
+
