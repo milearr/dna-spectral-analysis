@@ -1,8 +1,11 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
+"""
+Created on Thu Ago 12 2021
 
+@author: milena-arruda
+"""
 from scripts import *
-
 
 def main():
     
@@ -11,7 +14,10 @@ def main():
     if hasattr(args, 'file'):
         args.dir = os.path.dirname(args.file) + '/'
         seq = read_fasta(args.file)
-        _ = seq_analysis(args, seq)
+        if args.sw == False:
+            _ = seq_analysis(args, seq)
+        else:
+            _ = sliding_window(args, seq)
         
     elif hasattr(args, 'dir'):
         data_cds, data_intergenic = read_dir_database(args.dir, args.min_length_seq)
@@ -22,7 +28,6 @@ def main():
     
     elif hasattr(args, 'dir_statistics'):
         statistics(args)
-
 
 if __name__ == "__main__":
     main()
