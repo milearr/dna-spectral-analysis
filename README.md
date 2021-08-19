@@ -4,7 +4,7 @@ A program to spectral analysis of DNA sequences
 ## Usage
 Clone this repo to a local directory on your desktop and use it from the command line as
 
-`main.py [-h] [-v] [-e] [-k] [-f] [-s] [-a] file-mode [-p] [-w] [-st] file`
+`main.py [-h] [-v] [-e] [-k] [-f] [-s] [-a] file-mode [-p] [-sw] [-wl] [-st] file`
 
 or 
 
@@ -25,8 +25,9 @@ where the optional arguments are
 -s            set alg2 mapping
 -a            set all methods: -v, -e, -k, -f, -s
 -p            plot the energy spectrum of file from the chosen methods
--w            window length of sliding window approach
--st           step size of sliding window approach
+-sw           set the sliding window approach
+-wl W         set window length to W
+-st S         set step size to S
 -n N          delete sequences whose length is less than N (default: 0)
 -M M          set the number of sequences drawn to M (default: 500)
 -t TIMES      set the number of draws as TIMES (default: 10)
