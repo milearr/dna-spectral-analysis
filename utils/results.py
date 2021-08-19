@@ -1,5 +1,5 @@
 import os
-from project.dnasequence import *
+from scripts.dnasequence import *
 from .write_files import*
 
 def seq_analysis(args, seq):
