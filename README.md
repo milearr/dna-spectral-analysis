@@ -14,7 +14,7 @@ or
 
 `main.py [-h] [-v] [-e] [-k] [-f] [-s] [-a] statistics-mode [-M] [-t] [-sd] dir`
 
-where
+where the optional arguments are
 
 ```
 -h            show the help message and exit
