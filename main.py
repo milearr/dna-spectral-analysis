@@ -1,10 +1,5 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-"""
-Created on Thu Ago 12 2021
-
-@author: milena-arruda
-"""
 
 from project import *
 
@@ -27,8 +22,6 @@ def main():
     
     elif hasattr(args, 'dir_statistics'):
         statistics(args)
-
-
 
 
 if __name__ == "__main__":
