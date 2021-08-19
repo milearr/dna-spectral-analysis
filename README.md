@@ -26,8 +26,8 @@ where the optional arguments are
 -a            set all methods: -v, -e, -k, -f, -s
 -p            plot the energy spectrum of file from the chosen methods
 -sw           set the sliding window approach
--wl W         set window length to W
--st S         set step size to S
+-wl W         set window length to W  (default: 351)
+-st S         set step size to S (default: 1)
 -n N          delete sequences whose length is less than N (default: 0)
 -M M          set the number of sequences drawn to M (default: 500)
 -t TIMES      set the number of draws as TIMES (default: 10)
@@ -43,9 +43,9 @@ In this mode, the input is a file in .fasta format. Use one or mores options amo
 The output is a file 'F56F11_4a_coding.txt' saved in the directory './results/' created in the same folder as the input file. In this file are recorded values of normalized energy, normalized frequency, snr, entropy and TBP verification (True or False) for all methods of spectral analysis.
 
 ### Example 2: file-mode using sliding window
-In this mode, the input is a file in .fasta format. Use one or mores options among `-v`, `-e`, `-k`, `-f`, `-s` and `-a` to set the methods to spectral analysis. If you want to see the energy spectrum graphs, enable the option `-p`. Use `-sw`to enable this method. Use `-wl` to set the window length as W. Use `-st` to set the step size as S. For example, if you want set all methods of spectral analysis and plot their energy spectrum graphs to the file './database-seq/F56F11_4a.fasta', you must run this script from a command prompt as
+In this mode, the input is a file in .fasta format. Use one or mores options among `-v`, `-e`, `-k`, `-f`, `-s` and `-a` to set the methods to spectral analysis. If you want to see the energy spectrum graphs, enable the option `-p`. Use `-sw`to enable this method. Use `-wl` to set the window length as W. Use `-st` to set the step size as S. For example, if you want set all methods of spectral analysis and plot their energy spectrum graphs to the file './database-seq/F56F11_4a.fasta' considering a window length of 351 and step size of 5, you must run this script from a command prompt as
 
-`python3 main.py -a file-mode -p './database-seq/F56F11_4a.fasta'`
+`python3 main.py -a file-mode -p -sw -wl 351 -st 5 './database-seq/F56F11_4a.fasta'`
 
 The output is a file 'F56F11_4a-sliding-window.txt' saved in the directory './results/' created in the same folder as the input file. In this file are recorded values of energy, relative position and TBP verification (True or False) for all methods of spectral analysis.
 
