@@ -62,7 +62,7 @@ def acc_sen_spe(TP, FP, args):
 def roc(bxplt_TP, bxplt_FP, args):
     res = dict.fromkeys(args.methods, {})
     for mtd in args.methods:
-        res[mtd] = {'TP':bxplt_TP[mtd]['median'], 'FP': bxplt_FP[mtd]['median']}
+        res[mtd] = {'TP':bxplt_TP[mtd]['median']/args.M, 'FP': bxplt_FP[mtd]['median']/args.M}
     return res
 
 def statistics(args):
