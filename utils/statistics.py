@@ -1,15 +1,19 @@
 import numpy as np
 import random
-from .read_files import *
-from .write_files import *
 
-def draw_samples(data, M, times, sd):
+from .read_files import read_summarized_results
+from .write_files import write_statistics
+
+def draw_samples(data, args, keys):
+    M = args.M
+    times = args.times
+    sd = args.seed
     results_drawn = dict()
     for t in range(times):
         count = 0
         random.seed(sd + t)
         draw = random.sample(range(len(data)), M)
-        results_drawn[t] = {'voss':0, 'eiip':0, 'mem':0, 'qpsk':0, 'alg1':0, 'alg2':0}
+        results_drawn[t] = dict.fromkeys(keys, 0)
         for idx in draw:
             gene = list(data.keys())[idx]
             if count < M:
@@ -67,18 +71,33 @@ def roc(bxplt_TP, bxplt_FP, args):
 
 def statistics(args):
     res = {'bxplt_TP':None, 'bxplt_FP':None, 'roc':0, 'acc_sen_spe':0}
-    data_cds = read_summarized_results(args.dir_statistics + 'results-summarized/cds.txt')
-    TP = draw_samples(data_cds, args.M, args.times, args.seed)
-    res['bxplt_TP'] = boxplot_information(TP, args.methods)
+    data_cds, keys = read_summarized_results(args.dir_statistics + 'results-summarized/cds.txt')
+    keys = keys.split(', ')
 
-    data_intergenic = read_summarized_results(args.dir_statistics + 'results-summarized/intergenic.txt')
-    FP = draw_samples(data_intergenic, args.M, args.times, args.seed)
-    res['bxplt_FP'] = boxplot_information(FP, args.methods)
+    if set(args.methods).issubset(set(keys)):
+        TP = draw_samples(data_cds, args, keys)
+        res['bxplt_TP'] = boxplot_information(TP, args.methods)
 
-    res['roc'] = roc(res['bxplt_TP'], res['bxplt_FP'], args)
+        data_intergenic, _ = read_summarized_results(args.dir_statistics + 'results-summarized/intergenic.txt')
+        FP = draw_samples(data_intergenic, args, keys)
+        res['bxplt_FP'] = boxplot_information(FP, args.methods)
 
-    res['acc_sen_spe'] = acc_sen_spe(TP, FP, args)
+        res['roc'] = roc(res['bxplt_TP'], res['bxplt_FP'], args)
 
-    _ = write_statistics(res, args.dir_statistics, args.methods)
+        res['acc_sen_spe'] = acc_sen_spe(TP, FP, args)
+
+        _ = write_statistics(res, args.dir_statistics, args.methods)
+    else:
+        string = ', '.join(keys)
+        try:
+            string = string.replace('voss', '-v')
+            string = string.replace('eiip', '-e')
+            string = string.replace('qpsk', '-k')
+            string = string.replace('mem', '-g')
+            string = string.replace('alg1', '-f')
+            string = string.replace('alg2', '-s')
+        except:
+            pass
+        raise AttributeError('You must choose from the following optional arguments: ' + string)
 
     return None

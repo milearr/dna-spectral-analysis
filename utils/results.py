@@ -1,6 +1,7 @@
 import os
-from scripts.dnasequence import *
-from .write_files import*
+
+from dnaobj import *
+from .write_files import save_results_file_mode
 
 def seq_analysis(args, seq):
     name = os.path.basename(os.path.splitext(args.file)[0])
@@ -21,6 +22,8 @@ def seq_analysis(args, seq):
             dna = Eiip(seq)
         elif mtd == 'qpsk':
             dna = Qpsk(seq)
+        elif mtd == 'mem':
+            dna = Mem(seq)
         elif mtd == 'alg1':
             dna = AlgI(seq)
         elif mtd == 'alg2':
@@ -31,6 +34,7 @@ def seq_analysis(args, seq):
     return res
 
 def database_analysis(args, database):
+    args.plot = False
     for tag in database:
         args.file = tag + '.fasta'
         _ = seq_analysis(args, database[tag])

@@ -13,21 +13,26 @@ def save_results_file_mode(file, method, results):
             f.write('\n' + '{:>5}'.format(key) + string )
     return None
 
-def write_summarized_results_database(path):
+def write_summarized_results_database(args):
+    path = args.dir
     try:
         os.mkdir(path + 'results-summarized')
     except:
         pass
-    open(path + 'results-summarized/intergenic.txt', 'w') 
-    open(path + 'results-summarized/cds.txt', 'w') 
+    f1 = open(path + 'results-summarized/intergenic.txt', 'w') 
+    f1.write('keys: ' + ', '.join(args.methods) + '\n')
+    f1.close()
+    f2 = open(path + 'results-summarized/cds.txt', 'w') 
+    f2.write('keys: ' + ', '.join(args.methods) + '\n')
+    f2.close()
     dirr = os.listdir(path + 'results/')
     for file in dirr:
-        check = {'voss':0, 'eiip':0, 'mem':0, 'qpsk':0, 'alg1':0, 'alg2':0}
+        check = dict.fromkeys(args.methods, 0)
         with open(path + 'results/' + file, 'r') as f:
             for line in f:
                 if 'M: ' in line:
                     method = line[3:-1]
-                if 'exon' in line:
+                if 'exon' in line and method in args.methods:
                     if 'True' in line:
                         check[method] = True
                     else:

@@ -63,7 +63,10 @@ def read_summarized_results(file):
     data = dict()
     with open(file, 'r') as f:
         for line in f:
-            aux = line[:-1].split('\t\t')
-            gene = aux[0][1:]
-            data[gene] = ast.literal_eval(aux[1])
-    return data
+            if 'keys: ' in line:
+                keys = line[6:-1]
+            else:
+                aux = line[:-1].split('\t\t')
+                gene = aux[0][1:]
+                data[gene] = ast.literal_eval(aux[1])
+    return data, keys

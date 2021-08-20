@@ -1,8 +1,8 @@
+import numpy as np
 import os
-from .dnasequence import *
-from utils import *
-import matplotlib.pyplot as plt
 
+from dnaobj import *
+from utils import save_results_file_mode
 
 def sliding_window(args, seq):
     window_length = args.window
@@ -27,6 +27,7 @@ def sliding_window(args, seq):
         check = np.zeros(n)
         for idx in range(n):
             center = start + idx*step
+            print(center)
             window_seq = seq[center-start:center+start+1]
 
             if mtd == 'voss':
@@ -35,6 +36,8 @@ def sliding_window(args, seq):
                 dna = Eiip(window_seq)
             elif mtd == 'qpsk':
                 dna = Qpsk(window_seq)
+            elif mtd == 'mem':
+                dna = Mem(window_seq)
             elif mtd == 'alg1':
                 dna = AlgI(window_seq)
             elif mtd == 'alg2':
