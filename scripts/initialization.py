@@ -94,6 +94,8 @@ def initialize():
                         help = 'set eiip mapping')
     parser.add_argument('-k', '--qpsk', action='store_true', 
                         help = 'set qpks mapping')
+    parser.add_argument('-g', '--mem', action='store_true', 
+                        help = 'set mem mapping')
     parser.add_argument('-f', '--alg1', action='store_true', 
                         help = 'set alg1 mapping')
     parser.add_argument('-s', '--alg2', action='store_true', 
@@ -106,6 +108,7 @@ def initialize():
         args.voss = True
         args.eiip = True
         args.qpsk = True
+        args.mem = True
         args.alg1 = True
         args.alg2 = True
     arguments = vars(args)
