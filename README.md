@@ -21,7 +21,7 @@ where the optional arguments are
 -v            set voss method
 -e            set eiip mapping
 -k            set qpks mapping
--g            set mem method
+-g            set mem mapping
 -f            set alg1 mapping
 -s            set alg2 mapping
 -a            set all methods: -v, -e, -k, -f, -s
