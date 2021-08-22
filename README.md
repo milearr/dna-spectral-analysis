@@ -4,15 +4,15 @@ A program to spectral analysis of DNA sequences
 ## Usage
 Clone this repo to a local directory on your desktop and use it from the command line as
 
-`main.py [-h] [-v] [-e] [-k] [-f] [-s] [-a] file-mode [-p] [-sw] [-wl] [-st] file`
+`main.py [-h] [-v] [-e] [-k] [-g] [-f] [-s] [-a] file-mode [-p] [-sw] [-wl] [-st] file`
 
 or 
 
-`main.py [-h] [-v] [-e] [-k] [-f] [-s] [-a] database-mode [-n] dir`
+`main.py [-h] [-v] [-e] [-k] [-g] [-f] [-s] [-a] database-mode [-n] dir`
 
 or
 
-`main.py [-h] [-v] [-e] [-k] [-f] [-s] [-a] statistics-mode [-M] [-t] [-sd] dir`
+`main.py [-h] [-v] [-e] [-k] [-g] [-f] [-s] [-a] statistics-mode [-M] [-t] [-sd] dir`
 
 where the optional arguments are
 
@@ -21,6 +21,7 @@ where the optional arguments are
 -v            set voss method
 -e            set eiip mapping
 -k            set qpks mapping
+-g            set mem method
 -f            set alg1 mapping
 -s            set alg2 mapping
 -a            set all methods: -v, -e, -k, -f, -s
@@ -36,16 +37,16 @@ where the optional arguments are
 ## Quick demo
 
 ### Example 1: file-mode
-In this mode, the input is a file in .fasta format. Use one or mores options among `-v`, `-e`, `-k`, `-f`, `-s` and `-a` to set the methods to spectral analysis. If you want to see the energy spectrum graphs, enable the option `-p`. For example, if you want set all methods of spectral analysis and plot their energy spectrum graphs to the file './database-seq/F56F11_4a_coding.fasta', you must run this script from a command prompt as
+In this mode, the input is a file in .fasta format. Use one or mores options among `-v`, `-e`, `-k`, `-g`, `-f`, `-s` and `-a` to set the methods to spectral analysis. If you want to see the energy spectrum graphs, enable the option `-p`. For example, if you want set all methods of spectral analysis and plot their energy spectrum graphs to the file './database-seq/F56F11_4a_coding.fasta', you must run this script from a command prompt as
 
 `python3 main.py -a file-mode -p './database-seq/F56F11_4a_coding.fasta'`
 
 The output is a file 'F56F11_4a_coding.txt' saved in the directory './results/' created in the same folder as the input file. In this file are recorded values of normalized energy, normalized frequency, snr, entropy and TBP verification (True or False) for all methods of spectral analysis.
 
 ### Example 2: file-mode using sliding window
-In this mode, the input is a file in .fasta format. Use one or mores options among `-v`, `-e`, `-k`, `-f`, `-s` and `-a` to set the methods to spectral analysis. If you want to see the energy spectrum graphs, enable the option `-p`. Use `-sw`to enable this method. Use `-wl` to set the window length as W. Use `-st` to set the step size as S. For example, if you want set all methods of spectral analysis and plot their energy spectrum graphs to the file './database-seq/F56F11_4a.fasta' considering a window length of 351 and step size of 5, you must run this script from a command prompt as
+In this mode, the input is a file in .fasta format. Use one or mores options among `-v`, `-e`, `-k`, `-g`, `-f` and `-s` to set the methods to spectral analysis. If you want to see the energy spectrum graphs, enable the option `-p`. Use `-sw`to enable this method. Use `-wl` to set the window length as W. Use `-st` to set the step size as S. The MEM Spectrum constraints are true for sequences whose length is even, so `-a` cannot be used in this mode. For example, if you want set all other methods of spectral analysis and plot their energy spectrum graphs to the file './database-seq/F56F11_4a.fasta' considering a window length of 351 and step size of 5, you must run this script from a command prompt as
 
-`python3 main.py -a file-mode -p -sw -wl 351 -st 5 './database-seq/F56F11_4a.fasta'`
+`python3 main.py -v -e -k -f -s file-mode -p -sw -wl 351 -st 5 './database-seq/F56F11_4a.fasta'`
 
 The output is a file 'F56F11_4a-sliding-window.txt' saved in the directory './results/' created in the same folder as the input file. In this file are recorded values of energy, relative position and TBP verification (True or False) for all methods of spectral analysis.
 
