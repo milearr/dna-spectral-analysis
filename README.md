@@ -66,5 +66,6 @@ The output is a file 'results.txt' saved in the directory './results-statistics/
 
 ## Feedback
 Please do not hesitate to contact us if there is anything we may be able to help you with.
+Please send error messages or comments to our contact address.
 
 milena.arruda@ee.ufcg.edu.br
