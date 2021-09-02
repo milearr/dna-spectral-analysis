@@ -10,8 +10,9 @@ def draw_samples(data, args, keys):
     sd = args.seed
     results_drawn = dict()
     for t in range(times):
+        if sd != None:
+            random.seed(sd + t)
         count = 0
-        random.seed(sd + t)
         draw = random.sample(range(len(data)), M)
         results_drawn[t] = dict.fromkeys(keys, 0)
         for idx in draw:
@@ -42,6 +43,7 @@ def boxplot_information(results, methods):
             upper = max(data)
         else:
             upper = sorted(set(data))[-2]
+        print(data)
         res[mtd] = {'lower':lower, 'q1':q1, 'median':median, 'q3':q3, 'upper':upper}
     return res
 

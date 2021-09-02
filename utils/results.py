@@ -23,7 +23,10 @@ def seq_analysis(args, seq):
         elif mtd == 'qpsk':
             dna = Qpsk(seq)
         elif mtd == 'mem':
-            dna = Mem(seq)
+            if len(seq) % 2 != 0:
+                dna = Mem(seq[:-1])
+            else:
+                dna = Mem(seq)
         elif mtd == 'alg1':
             dna = AlgI(seq)
         elif mtd == 'alg2':

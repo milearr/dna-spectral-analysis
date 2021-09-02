@@ -27,8 +27,10 @@ def sliding_window(args, seq):
         check = np.zeros(n)
         for idx in range(n):
             center = start + idx*step
-            print(center)
-            window_seq = seq[center-start:center+start+1]
+            if window_length % 2 == 0:
+                window_seq = seq[center-start:center+start]
+            else:
+                window_seq = seq[center-start:center+start+1]
 
             if mtd == 'voss':
                 dna = Voss(window_seq)
@@ -47,6 +49,7 @@ def sliding_window(args, seq):
             _, S = spectral_seq.one_sided_energy()
             check[idx] = spectral_seq.check_exon()
             S3[idx] = S[window_length//3]
+
         S3 = S3/max(S3)
         chk = ''.join(map(lambda x: '{:>9}'.format(str(x)), check))
         pos = ''.join(map(lambda x: '{:>9}'.format(str(x)), position))

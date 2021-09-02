@@ -23,8 +23,8 @@ def main():
         
     elif hasattr(args, 'dir'):
         data_cds, data_intergenic = read_dir_database(args.dir, args.min_length_seq)
-        # _ = database_analysis(args, data_cds)
-        # _ = database_analysis(args, data_intergenic)
+        _ = database_analysis(args, data_cds)
+        _ = database_analysis(args, data_intergenic)
         _ = write_summarized_results_database(args)
     
     elif hasattr(args, 'dir_statistics'):

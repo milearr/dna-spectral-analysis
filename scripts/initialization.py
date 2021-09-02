@@ -27,7 +27,7 @@ def argparse_check_dir_summarized(path):
 def argparse_check_interval(num):
     num = int(num)
     if num <= 0 or num > 500:
-        raise argparse.ArgumentTypeError('must be positive and less than 500')
+        raise argparse.ArgumentTypeError(num + 'must be positive and less than 500')
     else:
         return num
 
@@ -54,7 +54,7 @@ def initialize():
     parser_file.add_argument('-sw', action='store_true', 
                         help = 'set the sliding window approach')
     parser_file.add_argument('-wl', '--window', metavar='', 
-                        type=argparse_check_window, default=351,
+                        type=int, default=351,
                         help = 'window length of sliding window approach '
                         '(default: %(default)s)')
     parser_file.add_argument('-st', '--step', metavar='', type=int, default=1,
@@ -83,10 +83,8 @@ def initialize():
                         default=10, metavar='',
                         help = 'set the number of draws '
                         '(default: %(default)s)')
-    parser_statistic.add_argument('-sd', '--seed', type=int, 
-                        default=10, metavar='',
-                        help = 'initialize the random number generator '
-                        '(default: %(default)s)')    
+    parser_statistic.add_argument('-sd', '--seed', type=int, metavar='',
+                        help = 'initialize the random number generator')    
 
     parser.add_argument('-v', '--voss', action='store_true', 
                         help = 'set voss method')
@@ -112,6 +110,15 @@ def initialize():
         args.alg1 = True
         args.alg2 = True
     arguments = vars(args)
-    args.methods = [i for i in arguments if arguments[i] == True and i not in ('all', 'plot', 'step', 'window', 'sw')]
+    args.methods = [i for i in arguments if arguments[i] == True and i not in ('all', 'plot', 'step', 'window', 'sw', 'seed')]
 
+    if 'sw' in args:
+        if args.sw == True:
+            if args.mem == True and len(args.methods) > 1:
+                raise argparse.ArgumentTypeError('in sliding window method the -g must be alone')
+            if args.mem == True and args.window % 2 != 0:
+                raise argparse.ArgumentTypeError('the window length -wl must be even')
+            if set(args.methods).issubset(set(['voss', 'eiip', 'qpsk', 'alg1', 'alg2'])) and args.window % 3 != 0:
+                raise argparse.ArgumentTypeError('the window length -wl must divide 3')
+    print(args)
     return args
