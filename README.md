@@ -1,8 +1,15 @@
 # DNA Coding Sequence Classification Using Spectral Envelope
 A program to spectral analysis of DNA sequences
 
+## Installation
+Note that this implementation has only been tested on Python 3.6.9, but we welcome any contributions or bug reporting.
+
+1. Clone this repository to a local directory on your desktop: `git clone https://github.com/Milena-Arruda/dna-spectral-analysis`
+1. Install Python dependencies: `pip3 install -r requirements.txt`
+1. Test the installation as follows.
+
 ## Usage
-Clone this repo to a local directory on your desktop and use it from the command line as
+Use this repo from the command line as
 
 `main.py [-h] [-v] [-e] [-k] [-g] [-f] [-s] [-a] file-mode [-p] [-sw] [-wl] [-st] file`
 
