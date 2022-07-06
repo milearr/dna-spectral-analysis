@@ -71,21 +71,6 @@ def initialize():
                         help = 'delete sequences whose length is less than N '
                         '(default: %(default)s)')
 
-    parser_statistic = subparsers.add_parser('statistics-mode',
-                        help='process a database from a directory dir')
-    parser_statistic.add_argument('dir_statistics', type=argparse_check_dir_summarized, metavar='dir',
-                        help='directory of the summarized results')
-    parser_statistic.add_argument('-M', type=argparse_check_interval, 
-                        default=500,
-                        help = 'set the number of sequences drawn to M '
-                        '(default: %(default)s)')
-    parser_statistic.add_argument('-t', '--times', type=int, 
-                        default=10, metavar='',
-                        help = 'set the number of draws '
-                        '(default: %(default)s)')
-    parser_statistic.add_argument('-sd', '--seed', type=int, metavar='',
-                        help = 'initialize the random number generator')    
-
     parser.add_argument('-v', '--voss', action='store_true', 
                         help = 'set voss method')
     parser.add_argument('-e', '--eiip', action='store_true', 
@@ -94,10 +79,10 @@ def initialize():
                         help = 'set qpks mapping')
     parser.add_argument('-g', '--mem', action='store_true', 
                         help = 'set mem mapping')
-    parser.add_argument('-f', '--alg1', action='store_true', 
-                        help = 'set alg1 mapping')
-    parser.add_argument('-s', '--alg2', action='store_true', 
-                        help = 'set alg2 mapping')
+    parser.add_argument('-f', '--tbpse', action='store_true', 
+                        help = 'set tbp_se mapping')
+    parser.add_argument('-s', '--snrse', action='store_true', 
+                        help = 'set snr_se mapping')
     parser.add_argument('-a', '--all', action='store_true', 
                         help = 'set all methods: -v, -e, -k, -f, -s')    
 
@@ -107,18 +92,19 @@ def initialize():
         args.eiip = True
         args.qpsk = True
         args.mem = True
-        args.alg1 = True
-        args.alg2 = True
+        args.tbpse = True
+        args.snrse = True
+        
     arguments = vars(args)
-    args.methods = [i for i in arguments if arguments[i] == True and i not in ('all', 'plot', 'step', 'window', 'sw', 'seed')]
+    args.methods = [i for i in arguments if arguments[i] == True and i not in ('all', 'plot', 'step', 'window', 'sw')]
 
     if 'sw' in args:
         if args.sw == True:
             if args.mem == True and len(args.methods) > 1:
-                raise argparse.ArgumentTypeError('in sliding window method the -g must be alone')
+                raise argparse.ArgumentTypeError('in sliding window method the -g method must be alone')
             if args.mem == True and args.window % 2 != 0:
                 raise argparse.ArgumentTypeError('the window length -wl must be even')
-            if set(args.methods).issubset(set(['voss', 'eiip', 'qpsk', 'alg1', 'alg2'])) and args.window % 3 != 0:
+            if set(args.methods).issubset(set(['voss', 'eiip', 'qpsk', 'tbpse', 'snrse'])) and args.window % 3 != 0:
                 raise argparse.ArgumentTypeError('the window length -wl must divide 3')
-    print(args)
+    # print(args)
     return args

@@ -39,11 +39,13 @@ def sliding_window(args, seq):
             elif mtd == 'qpsk':
                 dna = Qpsk(window_seq)
             elif mtd == 'mem':
+                print(center)
                 dna = Mem(window_seq)
-            elif mtd == 'alg1':
-                dna = AlgI(window_seq)
-            elif mtd == 'alg2':
-                dna = AlgII(window_seq)
+            elif mtd == 'tbpse':
+                dna = TBP_SE(window_seq)
+            elif mtd == 'snrse':
+                dna = SNR_SE(window_seq)
+
             
             spectral_seq = SpectralAnalysis(dna)
             _, S = spectral_seq.one_sided_energy()
