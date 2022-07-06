@@ -39,7 +39,6 @@ def sliding_window(args, seq):
             elif mtd == 'qpsk':
                 dna = Qpsk(window_seq)
             elif mtd == 'mem':
-                print(center)
                 dna = Mem(window_seq)
             elif mtd == 'tbpse':
                 dna = TBP_SE(window_seq)
