@@ -26,7 +26,6 @@ var/
 .ipynb_checkpoints
 
 #Others extensions
-*.txt
 *.fasta
 *.pgf
 *.tex
