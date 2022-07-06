@@ -26,10 +26,6 @@ def main():
         _ = database_analysis(args, data_cds)
         _ = database_analysis(args, data_intergenic)
         _ = write_summarized_results_database(args)
-    
-    elif hasattr(args, 'dir_statistics'):
-        statistics(args)
-
 
 
 
