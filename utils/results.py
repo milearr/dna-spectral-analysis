@@ -27,10 +27,10 @@ def seq_analysis(args, seq):
                 dna = Mem(seq[:-1])
             else:
                 dna = Mem(seq)
-        elif mtd == 'alg1':
-            dna = AlgI(seq)
-        elif mtd == 'alg2':
-            dna = AlgII(seq)
+        elif mtd == 'tbpse':
+            dna = TBP_SE(seq)
+        elif mtd == 'snrse':
+            dna = SNR_SE(seq)
         spectral_seq = SpectralAnalysis(dna)
         res = spectral_seq.results(graph=args.plot)
         save_results_file_mode(file, mtd, res)
