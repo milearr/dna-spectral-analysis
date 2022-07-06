@@ -17,9 +17,6 @@ or
 
 `main.py [-h] [-v] [-e] [-k] [-g] [-f] [-s] [-a] database-mode [-n] dir`
 
-or
-
-`main.py [-h] [-v] [-e] [-k] [-g] [-f] [-s] [-a] statistics-mode [-M] [-t] [-sd] dir`
 
 where the optional arguments are
 
@@ -37,9 +34,6 @@ where the optional arguments are
 -wl W         set window length to W  (default: 351)
 -st S         set step size to S (default: 1)
 -n N          delete sequences whose length is less than N (default: 0)
--M M          set the number of sequences drawn to M (default: 500)
--t TIMES      set the number of draws as TIMES (default: 10)
--sd SD        initialize the random number generator as SD (default: 10)
 ```
 ## Quick demo
 
@@ -63,13 +57,6 @@ In this mode, the input is a directory with files in .fasta format and their res
 `python3 main.py -a database-mode -n 200 './database-cerevisiae/'`
 
 As output, for each sequence in database, a file in .txt format is saved in the directory './results/' created in the same directory as the input. In each file are recorded values of normalized energy, normalized frequency, snr, entropy and TBP verification (True or False). Furthermore, two additional files summarize the results about TBP verification for each gene and are saved in the directory './results-summarized/' created in the same directory as the input. One file contains information about the intergenic regions and the other about the CDS.
-
-### Example 4: statistics-mode
-In this mode, the statistical analyses of the `database-mode` results are performed. The input is the same directory as `database-mode`. Use the one or mores options among `-v`, `-e`, `-k`, `-f`, `-s` and `-a` to set the methods to spectral analysis. Use `-M` to set the number of sequences drawn from database as M. Use `-t` to set the number of times `M` sequences are drawn. Use `-sd` to initialize the random number generator. For example, after perform the `database-mode`, you must run this script from a command prompt as
-
-`python3 main.py -a statistics-mode './database-cerevisiae/'`
-
-The output is a file 'results.txt' saved in the directory './results-statistics/' created in the same folder as the input. In this file are recorded for all methods of spectral analysis: the boxplot information for True Positive and False Positive classification, the coordinates of the point on the ROC space, and the accuracy, sensitivity and specificity rate.
 
 ## Contact
 Please do not hesitate to contact us if there is anything we may be able to help you with.
