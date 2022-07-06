@@ -4,5 +4,6 @@ from .voss import *
 from .eiip import *
 from .qpsk import *
 from .mem import *
-from .alg1 import *
-from .alg2 import *
+from .tbp_se import *
+from .snr_se import *
+from .alg3 import *
